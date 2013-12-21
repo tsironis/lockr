@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: [
-          'src/**/*.js',
+          'lockr.js',
           'specs/**/*.js'
         ],
         tasks: ['specs']
@@ -62,6 +62,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', 'specs');
-  grunt.registerTask('specs', ['concat', 'jshint', 'connect', 'jasmine']);
+  grunt.registerTask('specs', ['jshint', 'jasmine']);
 
 };
