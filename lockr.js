@@ -12,13 +12,33 @@
   }
 
 }(this, function(root, Lockr) {
-
   root.Lockr = Lockr;
 
   Lockr.set = function (key, value) {
-    localStorage.set(key, value);
+    localStorage.setItem(key, value);
   };
 
+  Lockr.hset = function (key, hashObj) {
+    localStorage.setItem(key, JSON.stringify(hashObj));
+  };
+
+  Lockr.get = function (key, callback) {
+    var value = localStorage.getItem(key);
+    return JSON.parse(value);
+  };
+
+
+  Lockr.getAll = function () {
+    var keys = Object.keys(localStorage);
+
+    return keys.map(function (key) {
+      return Lockr.get(key);
+    });
+  };
+
+  Lockr.flush = function () {
+    localStorage.clear();
+  };
   return Lockr;
 
 }));
