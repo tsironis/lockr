@@ -1,0 +1,20 @@
+{
+  "name": "lockr",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dimitris Tsironis",
+    "email": "dtsironis@splunk.com"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-jasmine": "~0.4.0",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt": "~0.4.0",
+    "grunt-cli": "~0.1.6"
+  }
+}
+
