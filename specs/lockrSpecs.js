@@ -18,7 +18,7 @@ describe('Lockr::Retrieving data', function  () {
     expect(hash.hey).toBe('whatsup');
     expect(hash.test).toEqual(123);
 
-    expect(number).toEqual(123);
+    expect(number).toEqual('123');
   });
 
   it('should get all contents of the localStorage', function () {
@@ -26,7 +26,7 @@ describe('Lockr::Retrieving data', function  () {
     expect(contents.length).toBe(2);
     expect(contents[0].test).toEqual(123);
     expect(contents[0].hey).toBe('whatsup');
-    expect(contents[1]).toEqual(123);
+    expect(contents[1]).toEqual('123');
   });
 });
 describe('Lockr::Flushing data', function  () {

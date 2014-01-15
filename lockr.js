@@ -18,12 +18,13 @@
   Lockr.hset = function (key, hashObj) {
     localStorage.setItem(key, JSON.stringify(hashObj));
   };
-
   Lockr.get = function (key, callback) {
     var value = localStorage.getItem(key);
-    return JSON.parse(value);
+    if (value.match(/[\{\}\:\[\]]/))
+      return JSON.parse(value);
+    else
+      return value;
   };
-
 
   Lockr.getAll = function () {
     var keys = Object.keys(localStorage);
