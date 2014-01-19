@@ -1,4 +1,4 @@
-![Lockr logo](http://i.imgur.com/w1wyawR.png?1)
+![Lockr logo](http://i.imgur.com/m5kPjkB.png)
 
 > A minimal API wrapper for localStorage. Simple as your high-school locker.
 
