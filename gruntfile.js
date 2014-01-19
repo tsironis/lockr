@@ -40,6 +40,16 @@ module.exports = function(grunt) {
         keepRunner: true
       }
     },
+    uglify: {
+      options: {
+        mangle: false
+      },
+      lockr: {
+        files: {
+          'lockr.min.js': ['lockr.js']
+        }
+      }
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -59,9 +69,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task.
   grunt.registerTask('default', 'specs');
-  grunt.registerTask('specs', ['jshint', 'jasmine']);
+  grunt.registerTask('specs', ['jshint', 'jasmine', 'uglify']);
 
 };
