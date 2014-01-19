@@ -22,7 +22,7 @@ or download it manually from [here](https://raw2.github.com/tsironis/lockr/maste
 
 ```Lockr.set``` - arguments: *[ key, value ]*
 
-Set a key to a particular value. Value could be ```String``` or ```Number```. Do *not* use this for saving ```Object``` or ```Array```.
+> Set a key to a particular value. Value could be ```String``` or ```Number```. Do *not* use this for saving ```Object``` or ```Array```.
 
 *Example*
 
@@ -35,7 +35,7 @@ Lockr.set('user_id', 12345); // Saved as number
 
 ```Lockr.hset``` - arguments: *[ hash_key, hash_value ]*
 
-Save a hash object (```Object``` or ```Array```) under a hash key.
+> Save a hash object (```Object``` or ```Array```) under a hash key.
 
 *Example*
 
@@ -47,7 +47,7 @@ Lockr.hset('users', [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]);
 
 ```Lockr.get``` - arguments: *[ key or hash_key ]*
 
-Returns the saved value for given key, even if the saved value is hash object.
+> Returns the saved value for given key, even if the saved value is hash object.
 
 *Example*
 ```js
@@ -65,7 +65,7 @@ Lockr.get('users');
 
 Lockr.getAll - arguments: *null*
 
-Returns all saved values & objects, in an ```Array```
+> Returns all saved values & objects, in an ```Array```
 
 *Example*
 
@@ -78,7 +78,7 @@ Lockr.getAll();
 
 ```Lockr.flush()``` - arguments: *null*
 
-Empties localStorage().
+> Empties localStorage().
 
 *Example*
 
