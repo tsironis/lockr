@@ -18,6 +18,7 @@
   Lockr.hset = function (key, hashObj) {
     localStorage.setItem(key, JSON.stringify(hashObj));
   };
+
   Lockr.get = function (key, callback) {
     var value = localStorage.getItem(key);
     if (value == null)
@@ -38,6 +39,10 @@
     return keys.map(function (key) {
       return Lockr.get(key);
     });
+  };
+
+  Lockr.rm =  function (key) {
+    localStorage.removeItem(key);
   };
 
   Lockr.flush = function () {

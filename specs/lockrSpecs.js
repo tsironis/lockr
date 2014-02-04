@@ -37,6 +37,15 @@ describe('Lockr::Retrieving data', function  () {
     expect(contents[0]).toEqual(123.123);
   });
 });
+
+describe('Lockr::Deleting an element', function () {
+  it('should remove succesfully a key-value pair', function() {
+    Lockr.rm('floating');
+    expect(floating).toBeUndefined();
+    var contents = Lockr.getAll();
+    expect(contents.length).toBe(2);
+  });
+});
 describe('Lockr::Flushing data', function  () {
   it('should clear all contents of the localStorage', function () {
     Lockr.flush();
