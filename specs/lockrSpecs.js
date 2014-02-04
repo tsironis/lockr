@@ -36,6 +36,14 @@ describe('Lockr::Retrieving data', function  () {
     expect(contents[2]).toEqual(123);
     expect(contents[0]).toEqual(123.123);
   });
+
+  it('should return strings containing "{"" as strings', function () {
+    Lockr.flush(); // Clear up before test
+    var theString = 'This is a string containing the characters "{", "}", "[", "]", ":" which are used in objects';
+
+    Lockr.set('aString', theString);
+    expect(Lockr.get('aString')).toEqual(theString);
+  });
 });
 describe('Lockr::Flushing data', function  () {
   it('should clear all contents of the localStorage', function () {
