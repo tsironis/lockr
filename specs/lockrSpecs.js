@@ -18,11 +18,14 @@ describe('Lockr::Retrieving data', function  () {
     var floating = Lockr.get('test_floating');
     var number = Lockr.get('test');
     var hash = Lockr.get('my_hash');
+    var empty = Lockr.get('something_that_doesnt_exist');
     expect(hash.hey).toBe('whatsup');
     expect(hash.test).toEqual(123);
 
     expect(integer).toEqual(123);
     expect(floating).toEqual(123.123);
+    expect(empty).not.toBeNull();
+    expect(empty).toBeUndefined();
   });
 
   it('should get all contents of the localStorage', function () {

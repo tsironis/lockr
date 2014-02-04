@@ -20,6 +20,8 @@
   };
   Lockr.get = function (key, callback) {
     var value = localStorage.getItem(key);
+    if (value == null)
+      return undefined;
     if (value.match(/[\{\}\:\[\]]/)) /* hash objects */
       return JSON.parse(value);
     else if (value.match(/^\d+(?:\.\d+$)/)) /* floating number */
