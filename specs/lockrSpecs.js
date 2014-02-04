@@ -5,7 +5,7 @@ describe('Lockr::Saving data', function  () {
     Lockr.set('test_floating', 123.123);
   });
   it('should save a hash object in the localStorage', function () {
-    Lockr.hset('my_hash', {'test': 123, "hey": "whatsup"});
+    Lockr.hset('my_hash', {"test": 123, "hey": "whatsup"});
     expect(localStorage.getItem('my_hash')).toContain('test');
     expect(localStorage.getItem('my_hash')).toContain('123');
     expect(localStorage.getItem('my_hash')).toContain('hey');
@@ -38,7 +38,6 @@ describe('Lockr::Retrieving data', function  () {
   });
 
   it('should return strings containing "{"" as strings', function () {
-    Lockr.flush(); // Clear up before test
     var theString = 'This is a string containing the characters "{", "}", "[", "]", ":" which are used in objects';
 
     Lockr.set('aString', theString);
@@ -48,10 +47,10 @@ describe('Lockr::Retrieving data', function  () {
 
 describe('Lockr::Deleting an element', function () {
   it('should remove succesfully a key-value pair', function() {
-    Lockr.rm('floating');
-    expect(floating).toBeUndefined();
+    Lockr.rm('test_floating');
+    expect(Lockr.get('test_floating')).toBeUndefined();
     var contents = Lockr.getAll();
-    expect(contents.length).toBe(2);
+    expect(contents.length).toBe(3);
   });
 });
 describe('Lockr::Flushing data', function  () {

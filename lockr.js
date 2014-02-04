@@ -11,6 +11,12 @@
 }(this, function(root, Lockr) {
   root.Lockr = Lockr;
 
+  function checkJSONObj(value) {
+    return ( /^[\],:{}\s]*$/.test(value.replace(/\\["\\\/bfnrtu]/g, '@')
+              .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+              .replace(/(?:^|:|,)(?:\s*\[)+/g, '')) );
+  }
+
   Lockr.set = function (key, value) {
     localStorage.setItem(key, value);
   };
@@ -23,7 +29,7 @@
     var value = localStorage.getItem(key);
     if (value == null)
       return undefined;
-    if (value.match(/[\{\}\:\[\]]/)) /* hash objects */
+    if (checkJSONObj(value))
       return JSON.parse(value);
     else if (value.match(/^\d+(?:\.\d+$)/)) /* floating number */
       return parseFloat(value);
