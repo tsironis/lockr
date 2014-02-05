@@ -20,34 +20,23 @@ or download it manually from [here](https://raw2.github.com/tsironis/lockr/maste
 
 ## API reference
 
-```Lockr.set``` - arguments: *[ key, value ]*
+```Lockr.set``` - arguments: *[ key, value ]* {String, Number, Array or Object}
 
-> Set a key to a particular value. Value could be ```String``` or ```Number```. Do *not* use this for saving ```Object``` or ```Array```.
+> Set a key to a particular value or a hash object (```Object``` or ```Array```) under a hash key.
 
 *Example*
 
 ```js
 Lockr.set('username', 'Coyote'); // Saved as string
 Lockr.set('user_id', 12345); // Saved as number
+Lockr.set('users', [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]);
 ```
 
 ---
 
-```Lockr.hset``` - arguments: *[ hash_key, hash_value ]*
+```Lockr.get``` - arguments: *[ key or hash_key, default value ]*
 
-> Save a hash object (```Object``` or ```Array```) under a hash key.
-
-*Example*
-
-```js
-Lockr.hset('users', [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]);
-```
-
----
-
-```Lockr.get``` - arguments: *[ key or hash_key ]*
-
-> Returns the saved value for given key, even if the saved value is hash object.
+> Returns the saved value for given key, even if the saved value is hash object. If value is null or undefined it returns a default value.
 
 *Example*
 ```js
