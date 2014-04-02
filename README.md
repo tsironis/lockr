@@ -52,7 +52,7 @@ Lockr.get('users');
 
 ---
 
-Lockr.getAll - arguments: *null*
+```Lockr.getAll``` - arguments: *null*
 
 > Returns all saved values & objects, in an ```Array```
 
@@ -61,6 +61,21 @@ Lockr.getAll - arguments: *null*
 ```js
 Lockr.getAll();
 > ["Coyote", 12345, [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]]
+```
+
+---
+
+```Lockr.salt``` - arguments: *empty string*
+
+> Salts each key that's getting saved with a differentiator of your own taste.
+
+*Example*
+
+```js
+Lockr.salt = "userid123";
+Lockr.set('account_type', 'paid'); // actually saves ```{ userid123account_type : '{"data":"paid"}' }```
+Lockr.get('account_type');
+> "paid"
 ```
 
 ---
