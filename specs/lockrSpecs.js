@@ -1,3 +1,4 @@
+localStorage.clear();
 describe('Lockr::Saving data', function  () {
   it('should save a key-value pair in the localStorage', function () {
     Lockr.set('test', 123);
@@ -59,5 +60,15 @@ describe('Lockr::Flushing data', function  () {
     Lockr.flush();
     var contents = Lockr.getAll();
     expect(contents.length).toBe(0);
+  });
+});
+describe('Lockr::Salted', function() {
+  it('should set a salt key', function() {
+    Lockr.salt = "imasalt";
+    expect(Lockr.salt).toEqual("imasalt");
+  });
+  it('should save a key-value pair, salted', function() {
+    Lockr.set("andpeper", true);
+    expect("imasaltandpeper" in localStorage).toEqual(true);
   });
 });

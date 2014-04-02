@@ -11,12 +11,16 @@
 }(this, function(root, Lockr) {
   root.Lockr = Lockr;
 
+  Lockr.salt = "";
+
   Lockr.set = function (key, value) {
-    localStorage.setItem(key, JSON.stringify({"data": value}));
+    var salted_key = this.salt + key;
+    localStorage.setItem(salted_key, JSON.stringify({"data": value}));
   };
 
   Lockr.get = function (key, missing) {
-    var value = JSON.parse(localStorage.getItem(key));
+    var salted_key = this.salt + key;
+    var value = JSON.parse(localStorage.getItem(salted_key));
     if(value === null)
       return missing;
     else
