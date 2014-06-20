@@ -20,7 +20,11 @@
 
   Lockr.get = function (key, missing) {
     var salted_key = this.salt + key;
-    var value = JSON.parse(localStorage.getItem(salted_key));
+    try {
+      var value = JSON.parse(localStorage.getItem(salted_key));
+    } catch (e) {
+      var value = null;
+    }
     if(value === null)
       return missing;
     else

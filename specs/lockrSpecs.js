@@ -45,6 +45,11 @@ describe('Lockr::Retrieving data', function  () {
     Lockr.set('aString', theString);
     expect(Lockr.get('aString')).toEqual(theString);
   });
+
+  it('should clean wrong data', function () {
+    localStorage.setItem('wrong', ',fluffy,truffly,commas,hell');
+    expect(Lockr.get('wrong')).toBeUndefined();
+  });
 });
 
 describe('Lockr::Deleting an element', function () {
@@ -52,7 +57,7 @@ describe('Lockr::Deleting an element', function () {
     Lockr.rm('test_floating');
     expect(Lockr.get('test_floating')).toBeUndefined();
     var contents = Lockr.getAll();
-    expect(contents.length).toBe(3);
+    expect(contents.length).toBe(4);
   });
 });
 describe('Lockr::Flushing data', function  () {
