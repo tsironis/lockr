@@ -19,5 +19,6 @@
     "lockr",
     "localStorage",
     "webapps"
-  ]
+  ],
+  "main": "./lockr.js"
 }
