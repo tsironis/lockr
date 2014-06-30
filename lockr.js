@@ -21,7 +21,7 @@
     try {
       localStorage.setItem(salted_key, JSON.stringify({"data": value}));
     } catch (e) {
-      if (console) console.warn('localStorage full');
+      if (console) console.warn("Lockr didn't successfully save the '{"+ key +": "+ value +"}' pair, because the localStorage is full.");
     }
   };
 
