@@ -9,21 +9,30 @@
   }
 
 }(this, function(root, Lockr) {
+  'use strict';
+
   root.Lockr = Lockr;
 
   Lockr.salt = "";
 
   Lockr.set = function (key, value) {
     var salted_key = this.salt + key;
-    localStorage.setItem(salted_key, JSON.stringify({"data": value}));
+
+    try {
+      localStorage.setItem(salted_key, JSON.stringify({"data": value}));
+    } catch (e) {
+      if (console) console.warn('localStorage full');
+    }
   };
 
   Lockr.get = function (key, missing) {
-    var salted_key = this.salt + key;
+    var salted_key = this.salt + key,
+        value;
+
     try {
-      var value = JSON.parse(localStorage.getItem(salted_key));
+      value = JSON.parse(localStorage.getItem(salted_key));
     } catch (e) {
-      var value = null;
+      value = null;
     }
     if(value === null)
       return missing;
