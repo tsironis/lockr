@@ -74,6 +74,10 @@
       return (value.data || []);
   };
 
+  Lockr.sismember = function(key, value) {
+    return Lockr.smembers(key).indexOf(value) > -1;
+  };
+
   Lockr.getAll = function () {
     var keys = Object.keys(localStorage);
 
