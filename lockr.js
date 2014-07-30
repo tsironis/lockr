@@ -54,7 +54,6 @@
       json = JSON.stringify({"data": values});
       localStorage.setItem(salted_key, json);
     } catch (e) {
-      console.log(e);
       if (console) console.warn("Lockr didn't successfully add the "+ value +" to "+ key +" set, because the localStorage is full.");
     }
   };
