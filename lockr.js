@@ -41,26 +41,37 @@
   };
 
   Lockr.sadd = function(key, value) {
-    var salted_key = this.salt + key,
-        val, json;
+    var salted_key = this.salt + key, json;
+
+    var values = Lockr.smembers(key);
 
     if (values.indexOf(value) > -1) {
       return null;
     }
 
     try {
-      val = JSON.parse(localStorage.getItem(salted_key));
-    } catch (e) {
-      val = [];
-    }
-
-    try {
-      val.push(value);
-      json = JSON.stringify({"data": val});
+      values.push(value);
+      json = JSON.stringify({"data": values});
       localStorage.setItem(salted_key, json);
     } catch (e) {
+      console.log(e);
       if (console) console.warn("Lockr didn't successfully add the "+ value +" to "+ key +" set, because the localStorage is full.");
     }
+  };
+
+  Lockr.smembers = function(key) {
+    var salted_key = this.salt + key, value;
+
+    try {
+      value = JSON.parse(localStorage.getItem(salted_key));
+    } catch (e) {
+      value = null;
+    }
+
+    if (value === null)
+      return [];
+    else
+      return (value.data || []);
   };
 
   Lockr.getAll = function () {
