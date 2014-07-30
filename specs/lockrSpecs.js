@@ -16,14 +16,6 @@ describe('Lockr::Saving data', function  () {
   });
 });
 
-describe('Lockr.sadd', function () {
-  it('saves a set under the given key in the localStorage', function () {
-    Lockr.sadd('test', 1)
-    Lockr.sadd('test', 2)
-    expect(localStorage.getItem('test')).toEqual('{"data":[1,2]}');
-  });
-});
-
 describe('Lockr::Retrieving data', function  () {
   it('should get a hash object from the localStorage', function () {
     var integer = Lockr.get('test');
@@ -76,6 +68,33 @@ describe('Lockr::Flushing data', function  () {
     expect(contents.length).toBe(0);
   });
 });
+
+describe('Lockr.sadd', function () {
+  it('saves a set under the given key in the localStorage', function () {
+    Lockr.sadd('test_set', 1)
+    Lockr.sadd('test_set', 2)
+    expect(localStorage.getItem('test_set')).toEqual('{"data":[1,2]}');
+  });
+
+  it('does not add the same value again', function() {
+    Lockr.sadd('test_set, 1');
+    expect(Lockr.smembers('test_set')).toEqual([1, 2]);
+  });
+});
+
+describe('Lockr.smembers', function() {
+  it('returns all the values for given key', function() {
+    expect(Lockr.smembers('test_set')).toEqual([1, 2]);
+  });
+});
+
+describe('Lock.sismember', function() {
+  it('returns true if the value exists in the given set(key)', function () {
+    expect(Lockr.sismember('test_set', 1)).toEqual(true);
+    expect(Lockr.sismember('test_set', 34)).toEqual(false);
+  });
+});
+
 describe('Lockr::Salted', function() {
   it('should set a salt key', function() {
     Lockr.salt = "imasalt";
