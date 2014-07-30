@@ -15,6 +15,15 @@ describe('Lockr::Saving data', function  () {
     expect(localStorage.getItem('my_hash')).toContain('whatsup');
   });
 });
+
+describe('Lockr.sadd', function () {
+  it('saves a set under the given key in the localStorage', function () {
+    Lockr.sadd('test', 1)
+    Lockr.sadd('test', 2)
+    expect(localStorage.getItem('test')).toEqual('{"data":[1,2]}');
+  });
+});
+
 describe('Lockr::Retrieving data', function  () {
   it('should get a hash object from the localStorage', function () {
     var integer = Lockr.get('test');

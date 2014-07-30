@@ -40,6 +40,29 @@
       return (value.data || missing);
   };
 
+  Lockr.sadd = function(key, value) {
+    var salted_key = this.salt + key,
+        val, json;
+
+    if (values.indexOf(value) > -1) {
+      return null;
+    }
+
+    try {
+      val = JSON.parse(localStorage.getItem(salted_key));
+    } catch (e) {
+      val = [];
+    }
+
+    try {
+      val.push(value);
+      json = JSON.stringify({"data": val});
+      localStorage.setItem(salted_key, json);
+    } catch (e) {
+      if (console) console.warn("Lockr didn't successfully add the "+ value +" to "+ key +" set, because the localStorage is full.");
+    }
+  };
+
   Lockr.getAll = function () {
     var keys = Object.keys(localStorage);
 
