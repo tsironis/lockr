@@ -72,6 +72,63 @@ Lockr.get('score', 0):
 
 ---
 
+```Lockr.sadd``` - arguments *[ key, value ]*{String, Number, Array or Object}
+
+> Adds a unique value to a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 1); // [1]
+Lockr.sadd("wat", 2); // [1, 2]
+Lockr.sadd("wat", 1); // [1, 2]
+```
+
+---
+
+```Lockr.smembers``` - arguments *[ key ]*
+
+> Returns the values of a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 42);
+Lockr.sadd("wat", 1337);
+Lockr.smembers("wat"); // [42, 1337]
+```
+
+---
+
+```Lockr.sismember``` - arguments *[ key, value ]*
+
+> Returns whether the value exists in a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 1);
+Lockr.sismember("wat", 1); // true
+Lockr.sismember("wat', 2); // false
+```
+
+---
+
+```Lockr.srem``` - arguments *[ key, value ]*
+
+> Removes a value from a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 1);
+Lockr.sadd("wat", 2);
+Lockr.srem("wat", 1);
+Lockr.smembers("wat"); // [2]
+```
+
+---
+
 ```Lockr.getAll``` - arguments: *null*
 
 > Returns all saved values & objects, in an ```Array```
