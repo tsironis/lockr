@@ -95,6 +95,13 @@ describe('Lock.sismember', function() {
   });
 });
 
+describe('Lock.srem', function() {
+  it('removes value from collection if exists', function() {
+    Lockr.srem('test_set', 1);
+    expect(Lockr.sismember('test_set', 1)).toEqual(false);
+  });
+});
+
 describe('Lockr::Salted', function() {
   it('should set a salt key', function() {
     Lockr.salt = "imasalt";
