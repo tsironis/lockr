@@ -2,7 +2,7 @@
 
 > A minimal API wrapper for localStorage. Simple as your high-school locker.
 
-Lockr (it's pronounced /ˈlɒkəʳ/) is a extremely lightweight library (<2kb when minified), designed to facilitate how you interact with localStorage. Saving objects and arrays, numbers or other data types, accessible via a Redis-like API, heavily inspired by [node_redis](https://github.com/mranney/node_redis/).
+Lockr (pronounced /ˈlɒkəʳ/) is an extremely lightweight library (<2kb when minified), designed to facilitate how you interact with localStorage. Saving objects and arrays, numbers or other data types, accessible via a Redis-like API, heavily inspired by [node_redis](https://github.com/mranney/node_redis/).
 
 ## How to use lockr
 
