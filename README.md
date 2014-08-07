@@ -2,7 +2,7 @@
 
 > A minimal API wrapper for localStorage. Simple as your high-school locker.
 
-Lockr (it's pronounced /ˈlɒkəʳ/) is a extremely lightweight library (<1kb when minified), designed to facilitate how you interact with localStorage. Saving objects and arrays, numbers or other data types, accessible via a Redis-like API, heavily inspired by [node_redis](https://github.com/mranney/node_redis/).
+Lockr (pronounced /ˈlɒkəʳ/) is an extremely lightweight library (<2kb when minified), designed to facilitate how you interact with localStorage. Saving objects and arrays, numbers or other data types, accessible via a Redis-like API, heavily inspired by [node_redis](https://github.com/mranney/node_redis/).
 
 ## How to use lockr
 
@@ -68,6 +68,63 @@ Lockr.get('score', 0):
 Lockr.set('score', 3):
 Lockr.get('score', 0):
 > 3
+```
+
+---
+
+```Lockr.sadd``` - arguments *[ key, value ]*{String, Number, Array or Object}
+
+> Adds a unique value to a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 1); // [1]
+Lockr.sadd("wat", 2); // [1, 2]
+Lockr.sadd("wat", 1); // [1, 2]
+```
+
+---
+
+```Lockr.smembers``` - arguments *[ key ]*
+
+> Returns the values of a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 42);
+Lockr.sadd("wat", 1337);
+Lockr.smembers("wat"); // [42, 1337]
+```
+
+---
+
+```Lockr.sismember``` - arguments *[ key, value ]*
+
+> Returns whether the value exists in a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 1);
+Lockr.sismember("wat", 1); // true
+Lockr.sismember("wat', 2); // false
+```
+
+---
+
+```Lockr.srem``` - arguments *[ key, value ]*
+
+> Removes a value from a particular set under a hash key.
+
+*Example*
+
+```js
+Lockr.sadd("wat", 1);
+Lockr.sadd("wat", 2);
+Lockr.srem("wat", 1);
+Lockr.smembers("wat"); // [2]
 ```
 
 ---
