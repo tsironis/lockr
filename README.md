@@ -109,7 +109,7 @@ Lockr.smembers("wat"); // [42, 1337]
 ```js
 Lockr.sadd("wat", 1);
 Lockr.sismember("wat", 1); // true
-Lockr.sismember("wat', 2); // false
+Lockr.sismember("wat", 2); // false
 ```
 
 ---
