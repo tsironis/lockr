@@ -71,6 +71,7 @@ describe('Lockr::Flushing data', function  () {
 
 describe('Lockr.sadd', function () {
   it('saves a set under the given key in the localStorage', function () {
+    Lockr.flush();
     Lockr.sadd('test_set', 1)
     Lockr.sadd('test_set', 2)
     expect(localStorage.getItem('test_set')).toEqual('{"data":[1,2]}');
@@ -102,13 +103,19 @@ describe('Lock.srem', function() {
   });
 });
 
-describe('Lockr::Salted', function() {
+describe('Lockr::Prefixed', function() {
   it('should set a salt key', function() {
-    Lockr.salt = "imasalt";
-    expect(Lockr.salt).toEqual("imasalt");
+    Lockr.prefix = "imaprefix";
+    expect(Lockr.prefix).toEqual("imaprefix");
+  });
+  it('should return a correctly prefixed key', function() {
+    expect(Lockr._getPrefixedKey('lalala')).toEqual('imaprefixlalala');
+  });
+  it('should return a non-prefixed key', function() {
+    expect(Lockr._getPrefixedKey('lalala', {noPrefix: true})).toEqual("lalala");
   });
   it('should save a key-value pair, salted', function() {
-    Lockr.set("andpeper", true);
-    expect("imasaltandpeper" in localStorage).toEqual(true);
+    Lockr.set("justlikeyou", true);
+    expect("imaprefixjustlikeyou" in localStorage).toEqual(true);
   });
 });
