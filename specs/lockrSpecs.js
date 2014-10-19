@@ -104,7 +104,7 @@ describe('Lock.srem', function() {
 });
 
 describe('Lockr::Prefixed', function() {
-  it('should set a salt key', function() {
+  it('should set a prefix', function() {
     Lockr.prefix = "imaprefix";
     expect(Lockr.prefix).toEqual("imaprefix");
   });
@@ -114,7 +114,7 @@ describe('Lockr::Prefixed', function() {
   it('should return a non-prefixed key', function() {
     expect(Lockr._getPrefixedKey('lalala', {noPrefix: true})).toEqual("lalala");
   });
-  it('should save a key-value pair, salted', function() {
+  it('should save a key-value pair, prefixed', function() {
     Lockr.set("justlikeyou", true);
     expect("imaprefixjustlikeyou" in localStorage).toEqual(true);
   });
