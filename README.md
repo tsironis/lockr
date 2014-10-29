@@ -34,19 +34,6 @@ Lockr.set('users', [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]);
 
 ---
 
-```Lockr.salt``` - arguments: *empty string*
-
-> Salts each key that's getting saved with a differentiator of your own taste.
-
-*Example*
-
-```js
-Lockr.salt = "userid123";
-Lockr.set('account_type', 'paid'); // actually saves ```{ userid123account_type : '{"data":"paid"}' }```
-Lockr.get('account_type');
-> "paid"
-```
-
 ```Lockr.get``` - arguments: *[ key or hash_key, default value ]*
 
 > Returns the saved value for given key, even if the saved value is hash object. If value is null or undefined it returns a default value.
