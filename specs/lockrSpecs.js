@@ -1,13 +1,17 @@
-localStorage.clear();
-describe('Lockr::Saving data', function  () {
-  it('should save a key-value pair in the localStorage', function () {
+afterEach(function() {
+  localStorage.clear();
+});
+
+describe('Lockr.set', function  () {
+  it('saves a key-value pair in the localStorage', function () {
     Lockr.set('test', 123);
+
     expect(localStorage.getItem('test')).toEqual('{"data":123}');
-    Lockr.set('test_floating', 123.123);
-    expect(localStorage.getItem('test_floating')).toEqual('{"data":123.123}');
   });
+
   it('should save a hash object in the localStorage', function () {
     Lockr.set('my_hash', {"test": 123, "hey": "whatsup"});
+
     expect(localStorage.getItem('my_hash')).toContain('data');
     expect(localStorage.getItem('my_hash')).toContain('test');
     expect(localStorage.getItem('my_hash')).toContain('123');
@@ -16,90 +20,129 @@ describe('Lockr::Saving data', function  () {
   });
 });
 
-describe('Lockr::Retrieving data', function  () {
-  it('should get a hash object from the localStorage', function () {
-    var integer = Lockr.get('test');
-    var floating = Lockr.get('test_floating');
-    var number = Lockr.get('test');
-    var hash = Lockr.get('my_hash');
-    var empty = Lockr.get('something_that_doesnt_exist');
-    expect(hash.hey).toBe('whatsup');
-    expect(hash.test).toEqual(123);
-
-    expect(integer).toEqual(123);
-    expect(floating).toEqual(123.123);
-    expect(empty).not.toBeNull();
-    expect(empty).toBeUndefined();
+describe('Lockr.get', function () {
+  beforeEach(function() {
+    Lockr.set('test', 123);
+    Lockr.sadd('array', 2);
+    Lockr.sadd('array', 3);
+    Lockr.set('hash', {"test": 123, "hey": "whatsup"});
   });
 
-  it('should get all contents of the localStorage', function () {
+  it('returns the value for the given key from the localStorage', function () {
+    var value = Lockr.get('test');
+
+    expect(value).toEqual(123);
+  });
+
+  it('returns undefined for a non-existent key', function() {
+    var value = Lockr.get('something');
+
+    expect(value).not.toBeNull();
+    expect(value).toBeUndefined();
+  });
+
+  it('gets all contents of the localStorage', function () {
     var contents = Lockr.getAll();
+
     expect(contents.length).toBe(3);
-    expect(contents).toContain(123.123);
     expect(contents).toContain({"test": 123, "hey": "whatsup"});
     expect(contents).toContain(123);
+    expect(contents).toContain([2, 3]);
   });
 
-  it('should return strings containing "{"" as strings', function () {
-    var theString = 'This is a string containing the characters "{", "}", "[", "]", ":" which are used in objects';
+  describe('with wrong data', function() {
+    beforeEach(function() {
+      localStorage.setItem('wrong', ',fluffy,truffly,commas,hell');
+    });
 
-    Lockr.set('aString', theString);
-    expect(Lockr.get('aString')).toEqual(theString);
-  });
+    it('cleans wrong data', function () {
+      var wrongData = Lockr.get("wrong");
 
-  it('should clean wrong data', function () {
-    localStorage.setItem('wrong', ',fluffy,truffly,commas,hell');
-    expect(Lockr.get('wrong')).toBeUndefined();
+      expect(wrongData).toBeUndefined();
+    });
   });
 });
 
-describe('Lockr::Deleting an element', function () {
-  it('should remove succesfully a key-value pair', function() {
-    Lockr.rm('test_floating');
-    expect(Lockr.get('test_floating')).toBeUndefined();
+describe('Lockr.rm', function () {
+  beforeEach(function() {
+    Lockr.set('test', 123);
+    Lockr.sadd('array', 2);
+    Lockr.sadd('array', 3);
+    Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+  });
+
+  it('removes succesfully a key-value pair', function() {
+    var oldContents = Lockr.getAll();
+    expect(oldContents.length).toBe(3);
+
+    Lockr.rm('test');
+    expect(Lockr.get('test')).toBeUndefined();
+
     var contents = Lockr.getAll();
-    expect(contents.length).toBe(4);
+    expect(contents.length).toBe(2);
   });
 });
-describe('Lockr::Flushing data', function  () {
-  it('should clear all contents of the localStorage', function () {
+
+describe('Lockr.flush', function  () {
+  beforeEach(function() {
+    Lockr.set('test', 123);
+    Lockr.sadd('array', 2);
+    Lockr.sadd('array', 3);
+    Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+  });
+
+  it('clears all contents of the localStorage', function () {
+    var oldContents = Lockr.getAll();
+    expect(oldContents.length).not.toBe(0);
+
     Lockr.flush();
+
     var contents = Lockr.getAll();
     expect(contents.length).toBe(0);
   });
 });
 
-describe('Lockr.sadd', function () {
-  it('saves a set under the given key in the localStorage', function () {
-    Lockr.flush();
-    Lockr.sadd('test_set', 1)
-    Lockr.sadd('test_set', 2)
-    expect(localStorage.getItem('test_set')).toEqual('{"data":[1,2]}');
+describe('Sets', function() {
+  beforeEach(function() {
+    Lockr.sadd('test_set', 1);
+    Lockr.sadd('test_set', 2);
   });
 
-  it('does not add the same value again', function() {
-    Lockr.sadd('test_set, 1');
-    expect(Lockr.smembers('test_set')).toEqual([1, 2]);
-  });
-});
+  describe('Lockr.sadd', function () {
+    it('saves a set under the given key in the localStorage', function () {
+      Lockr.sadd('a_set', 1);
+      Lockr.sadd('a_set', 2);
 
-describe('Lockr.smembers', function() {
-  it('returns all the values for given key', function() {
-    expect(Lockr.smembers('test_set')).toEqual([1, 2]);
-  });
-});
+      expect(localStorage.getItem('a_set')).toEqual('{"data":[1,2]}');
+    });
 
-describe('Lock.sismember', function() {
-  it('returns true if the value exists in the given set(key)', function () {
-    expect(Lockr.sismember('test_set', 1)).toEqual(true);
-    expect(Lockr.sismember('test_set', 34)).toEqual(false);
-  });
-});
+    it('does not add the same value again', function() {
+      Lockr.sadd('test_set', 1);
+      Lockr.sadd('test_set', 2);
+      Lockr.sadd('test_set, 1');
 
-describe('Lock.srem', function() {
-  it('removes value from collection if exists', function() {
-    Lockr.srem('test_set', 1);
-    expect(Lockr.sismember('test_set', 1)).toEqual(false);
+      expect(Lockr.smembers('test_set')).toEqual([1, 2]);
+    });
+  });
+
+  describe('Lockr.smembers', function() {
+    it('returns all the values for given key', function() {
+      expect(Lockr.smembers('test_set')).toEqual([1, 2]);
+    });
+  });
+
+  describe('Lock.sismember', function() {
+    it('returns true if the value exists in the given set(key)', function () {
+      expect(Lockr.sismember('test_set', 1)).toEqual(true);
+      expect(Lockr.sismember('test_set', 34)).toEqual(false);
+    });
+  });
+
+  describe('Lock.srem', function() {
+    it('removes value from collection if exists', function() {
+      Lockr.srem('test_set', 1);
+      expect(Lockr.sismember('test_set', 1)).toEqual(false);
+    });
   });
 });
 
