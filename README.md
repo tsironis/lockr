@@ -1,4 +1,7 @@
 ![Lockr logo](http://i.imgur.com/m5kPjkB.png)
+[![Code
+Climate](https://codeclimate.com/github/tsironis/lockr/badges/gpa.svg)](https://codeclimate.com/github/tsironis/lockr)
+
 
 > A minimal API wrapper for localStorage. Simple as your high-school locker.
 
