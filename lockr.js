@@ -2,9 +2,8 @@
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = _;
+      exports = module.exports = factory(root, exports);
     }
-    exports._ = _;
   } else if (typeof define === 'function' && define.amd) {
     define(['exports'], function(exports) {
       root.Lockr = factory(root, exports);
@@ -15,8 +14,6 @@
 
 }(this, function(root, Lockr) {
   'use strict';
-
-  root.Lockr = Lockr;
 
   if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function(elt /*, from*/)
