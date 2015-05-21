@@ -1,6 +1,11 @@
 (function(root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = _;
+    }
+    exports._ = _;
+  } else if (typeof define === 'function' && define.amd) {
     define(['exports'], function(exports) {
       root.Lockr = factory(root, exports);
     });
