@@ -8,6 +8,7 @@
   "engines": {
     "node": ">= 0.8.0"
   },
+  "main": "lockr.js",
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-jasmine": "~0.6.1",
