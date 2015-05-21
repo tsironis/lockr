@@ -1,6 +1,6 @@
 {
   "name": "lockr",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "author": {
     "name": "Dimitris Tsironis",
     "email": "dtsironis@splunk.com"
@@ -18,4 +18,3 @@
     "grunt-cli": "~0.1.6"
   }
 }
-
