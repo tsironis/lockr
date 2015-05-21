@@ -8,6 +8,16 @@
   "engines": {
     "node": ">= 0.8.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tsironis/lockr.git"
+  },
+  "license": "MIT",
+  "files": [
+    "lockr.js",
+    "lockr.min.js",
+    "LICENSE"
+  ],
   "main": "lockr.js",
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
