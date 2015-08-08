@@ -26,6 +26,9 @@ describe('Lockr.get', function () {
     Lockr.sadd('array', 2);
     Lockr.sadd('array', 3);
     Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+    localStorage.nativemethod = 'NativeMethod'
+    Lockr.set('valueFalse', false)
+    Lockr.set('value0', 0)
   });
 
   it('returns the value for the given key from the localStorage', function () {
@@ -39,6 +42,24 @@ describe('Lockr.get', function () {
 
     expect(value).not.toBeNull();
     expect(value).toBeUndefined();
+  });
+
+  it('returns the value for the given key from the localStorage which set by native method', function () {
+    var value = Lockr.get('nativemethod');
+
+    expect(value).toEqual('NativeMethod');
+  });
+
+  it('returns the value for the given key from the localStorage which equals false', function () {
+    var value = Lockr.get('valueFalse');
+
+    expect(value).toEqual(false);
+  });
+
+  it('returns the value for the given key from the localStorage which equals 0', function () {
+    var value = Lockr.get('value0');
+
+    expect(value).toEqual(0);
   });
 
   it('gets all contents of the localStorage', function () {

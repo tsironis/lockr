@@ -67,12 +67,18 @@
     try {
       value = JSON.parse(localStorage.getItem(query_key));
     } catch (e) {
-      value = null;
+      if( localStorage[query_key] ){
+        value = JSON.parse('{"data":"' + localStorage.getItem(query_key) + '"}')
+      }else{
+        value = null;
+      }
     }
     if(value === null)
       return missing;
     else
-      return (value.data || missing);
+        return (typeof value == 'object' && typeof value.data != 'undefined')
+                ? value.data
+                : (value || missing);
   };
 
   Lockr.sadd = function(key, value, options) {
