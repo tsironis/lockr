@@ -73,12 +73,13 @@
         value = null;
       }
     }
-    if(value === null)
+    if(value === null) {
       return missing;
-    else
-        return (typeof value == 'object' && typeof value.data != 'undefined')
-                ? value.data
-                : (value || missing);
+    } else if (typeof value.data !== 'undefined') {
+      return value.data;
+    } else {
+      return missing;
+    }
   };
 
   Lockr.sadd = function(key, value, options) {

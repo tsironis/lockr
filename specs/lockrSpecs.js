@@ -65,7 +65,7 @@ describe('Lockr.get', function () {
   it('gets all contents of the localStorage', function () {
     var contents = Lockr.getAll();
 
-    expect(contents.length).toBe(3);
+    expect(contents.length).toBe(6);
     expect(contents).toContain({"test": 123, "hey": "whatsup"});
     expect(contents).toContain(123);
     expect(contents).toContain([2, 3]);
@@ -79,7 +79,7 @@ describe('Lockr.get', function () {
     it('cleans wrong data', function () {
       var wrongData = Lockr.get("wrong");
 
-      expect(wrongData).toBeUndefined();
+      expect(wrongData).toBe(',fluffy,truffly,commas,hell');
     });
   });
 });
