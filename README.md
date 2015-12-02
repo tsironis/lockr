@@ -62,6 +62,21 @@ Lockr.get('score', 0):
 
 ---
 
+```Lockr.rm``` - arguments: *[ key ]* {String}
+
+> Remove a key from ```localStorage``` entirely.
+
+*Example*
+
+```js
+Lockr.set('username', 'Coyote'); // Saved as string
+Lockr.get('username');
+> Coyote
+Lockr.rm('username');
+```
+
+---
+
 ```Lockr.sadd``` - arguments *[ key, value ]*{String, Number, Array or Object}
 
 > Adds a unique value to a particular set under a hash key.
