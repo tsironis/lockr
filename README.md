@@ -71,8 +71,10 @@ Lockr.get('score', 0):
 ```js
 Lockr.set('username', 'Coyote'); // Saved as string
 Lockr.get('username');
-> Coyote
+> "Coyote"
 Lockr.rm('username');
+Lockr.get('username');
+> undefined
 ```
 
 ---
