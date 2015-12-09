@@ -3,7 +3,7 @@
   "version": "0.8.3",
   "author": {
     "name": "Dimitris Tsironis",
-    "email": "dtsironis@splunk.com"
+    "email": "tsironis.dimitris@gmail.com"
   },
   "engines": {
     "node": ">= 0.8.0"
