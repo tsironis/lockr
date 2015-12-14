@@ -15,7 +15,7 @@ In order to user lockr, you firstly need to install it in your project.
 bower install lockr
 ```
 
-or download it manually from [here](https://raw2.github.com/tsironis/lockr/master/lockr.js) and hook it in your HTML.
+or download it manually from [here](https://raw.github.com/tsironis/lockr/master/lockr.js) and hook it in your HTML.
 
 ```html
 <script src="/path/to/lockr.js" type="text/javascript"></script>
