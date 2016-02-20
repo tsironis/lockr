@@ -67,15 +67,11 @@
     try {
       value = JSON.parse(localStorage.getItem(query_key));
     } catch (e) {
-        try {
             if(localStorage[query_key]) {
-                value = JSON.parse('{"data":"' + localStorage.getItem(query_key) + '"}');
+              value = {data: localStorage.getItem(query_key)};
             } else{
                 value = null;
             }
-        } catch (e) {
-            if (console) console.warn("Lockr could not load the item with key " + key);
-        }
     }
     if(value === null) {
       return missing;
