@@ -71,15 +71,20 @@ describe('Lockr.get', function () {
     expect(contents).toContain([2, 3]);
   });
 
-  describe('with wrong data', function() {
+  describe('with pre-existing data', function() {
     beforeEach(function() {
       localStorage.setItem('wrong', ',fluffy,truffly,commas,hell');
+      localStorage.setItem('unescaped', 'a " double-quote');
     });
 
-    it('cleans wrong data', function () {
+    it("if it's not a json we get as-is", function () {
       var wrongData = Lockr.get("wrong");
-
       expect(wrongData).toBe(',fluffy,truffly,commas,hell');
+    });
+
+    it('works with unescaped characters', function () {
+      var unescaped = Lockr.get('unescaped');
+      expect(unescaped).toBe('a " double-quote');
     });
   });
 });
