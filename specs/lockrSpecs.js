@@ -214,4 +214,27 @@ describe('Lockr::Prefixed', function() {
     expect(keys).toContain('imaprefixone', 'imaprefixtwo', 'imaprefixthree', 'imaprefixfour');
   });
 
+  describe('Lockr.flush', function  () {
+    beforeEach(function() {
+      localStorage.setItem('noprefix', false);
+      Lockr.set('test', 123);
+      Lockr.sadd('array', 2);
+      Lockr.sadd('array', 3);
+      Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+    });
+
+    it('clears all contents of the localStorage', function () {
+      var oldContents = Lockr.getAll();
+      expect(oldContents.length).not.toBe(0);
+
+      expect(Object.keys(localStorage)).toContain('noprefix')
+      Lockr.flush();
+      expect(Object.keys(localStorage)).toContain('noprefix')
+
+      var contents = Lockr.getAll();
+      expect(contents.length).toBe(0);
+    });
+  });
+
+
 });

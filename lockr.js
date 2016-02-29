@@ -165,7 +165,13 @@
   };
 
   Lockr.flush = function () {
-    localStorage.clear();
+    if (Lockr.prefix.length) {
+      Lockr.keys().forEach(function(key) {
+        localStorage.removeItem(key);
+      });
+    } else {
+      localStorage.clear();
+    }
   };
   return Lockr;
 
