@@ -124,13 +124,16 @@
     return Lockr.smembers(key).indexOf(value) > -1;
   };
 
-  Lockr.getAll = function () {
+  Lockr.keys = function() {
     var keys = Object.keys(localStorage);
-    
-    keys = keys.filter(function (key) {
-      return key.indexOf(Lockr.prefix) !== -1
-    });
 
+    return keys.filter(function (key) {
+      return key.indexOf(Lockr.prefix) !== -1;
+    });
+  };
+
+  Lockr.getAll = function () {
+    var keys = Lockr.keys();
     return keys.map(function (key) {
       return Lockr.get(key.substr(Lockr.prefix.length));
     });

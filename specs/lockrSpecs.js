@@ -62,6 +62,19 @@ describe('Lockr.get', function () {
     expect(value).toEqual(0);
   });
 
+  it('gets Lockr keys', function() {
+    Lockr.flush();
+    Lockr.set('one', 1);
+    Lockr.set('two', 2);
+    Lockr.set('three', 3);
+    Lockr.set('four', 4);
+
+    var keys = Lockr.keys();
+
+    expect(keys.length).toBe(4);
+    expect(keys).toContain('one', 'two', 'three', 'four');
+  });
+
   it('gets all contents of the localStorage', function () {
     var contents = Lockr.getAll();
 
@@ -187,4 +200,18 @@ describe('Lockr::Prefixed', function() {
     Lockr.set("justlikeyou", true);
     expect("imaprefixjustlikeyou" in localStorage).toEqual(true);
   });
+  it('gets Lockr keys (with prefix)', function() {
+    Lockr.flush();
+
+    Lockr.set('one', 1);
+    Lockr.set('two', 2);
+    Lockr.set('three', 3);
+    Lockr.set('four', 4);
+
+    var keys = Lockr.keys();
+
+    expect(keys.length).toBe(4);
+    expect(keys).toContain('imaprefixone', 'imaprefixtwo', 'imaprefixthree', 'imaprefixfour');
+  });
+
 });
