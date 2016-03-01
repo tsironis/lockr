@@ -125,17 +125,26 @@
   };
 
   Lockr.keys = function() {
-    var keys = Object.keys(localStorage);
+    var keys = [];
+    var allKeys = Object.keys(localStorage);
 
-    return keys.filter(function (key) {
-      return key.indexOf(Lockr.prefix) !== -1;
+    if (Lockr.prefix.length === 0) {
+      return allKeys;
+    }
+
+    allKeys.forEach(function (key) {
+      if (key.indexOf(Lockr.prefix) !== -1) {
+        keys.push(key.replace(Lockr.prefix, ''));
+      }
     });
+
+    return keys;
   };
 
   Lockr.getAll = function () {
     var keys = Lockr.keys();
     return keys.map(function (key) {
-      return Lockr.get(key.substr(Lockr.prefix.length));
+      return Lockr.get(key);
     });
   };
 
@@ -167,7 +176,7 @@
   Lockr.flush = function () {
     if (Lockr.prefix.length) {
       Lockr.keys().forEach(function(key) {
-        localStorage.removeItem(key);
+        localStorage.removeItem(Lockr._getPrefixedKey(key));
       });
     } else {
       localStorage.clear();

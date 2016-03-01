@@ -203,6 +203,7 @@ describe('Lockr::Prefixed', function() {
   it('gets Lockr keys (with prefix)', function() {
     Lockr.flush();
 
+    localStorage.setItem('zero', 0);
     Lockr.set('one', 1);
     Lockr.set('two', 2);
     Lockr.set('three', 3);
@@ -211,25 +212,24 @@ describe('Lockr::Prefixed', function() {
     var keys = Lockr.keys();
 
     expect(keys.length).toBe(4);
-    expect(keys).toContain('imaprefixone', 'imaprefixtwo', 'imaprefixthree', 'imaprefixfour');
+    expect(keys).toContain('one', 'two', 'three', 'four');
   });
 
   describe('Lockr.flush', function  () {
-    beforeEach(function() {
+    it('clears all contents of the localStorage with prefix', function () {
       localStorage.setItem('noprefix', false);
       Lockr.set('test', 123);
       Lockr.sadd('array', 2);
       Lockr.sadd('array', 3);
       Lockr.set('hash', {"test": 123, "hey": "whatsup"});
-    });
 
-    it('clears all contents of the localStorage', function () {
       var oldContents = Lockr.getAll();
-      expect(oldContents.length).not.toBe(0);
+      var keys = Object.keys(localStorage);
 
-      expect(Object.keys(localStorage)).toContain('noprefix')
+      expect(oldContents.length).not.toBe(0);
+      expect(keys).toContain('noprefix')
       Lockr.flush();
-      expect(Object.keys(localStorage)).toContain('noprefix')
+      expect(keys).toContain('noprefix')
 
       var contents = Lockr.getAll();
       expect(contents.length).toBe(0);
