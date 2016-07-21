@@ -24,6 +24,7 @@ npm i lockr --save
 or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/master/lockr.js) and hook it in your HTML.
 
 
+> 新增生命周期, 默认2099年到期
 
 *Update*
 ```js
