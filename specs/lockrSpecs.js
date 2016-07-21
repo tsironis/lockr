@@ -1,16 +1,21 @@
+beforeEach(function(){
+  timerCallback = jasmine.createSpy('timerCallback');
+  jasmine.clock().install();
+})
 afterEach(function() {
   localStorage.clear();
+  jasmine.clock().uninstall();
 });
 
-describe('Lockr.set', function  () {
-  it('saves a key-value pair in the localStorage', function () {
+describe('Lockr.set', function() {
+  it('saves a key-value pair in the localStorage', function() {
     Lockr.set('test', 123);
 
-    expect(localStorage.getItem('test')).toEqual('{"data":123}');
+    expect(localStorage.getItem('test')).toContain('{"data":123,');
   });
 
-  it('should save a hash object in the localStorage', function () {
-    Lockr.set('my_hash', {"test": 123, "hey": "whatsup"});
+  it('should save a hash object in the localStorage', function() {
+    Lockr.set('my_hash', { "test": 123, "hey": "whatsup" });
 
     expect(localStorage.getItem('my_hash')).toContain('data');
     expect(localStorage.getItem('my_hash')).toContain('test');
@@ -20,20 +25,19 @@ describe('Lockr.set', function  () {
   });
 });
 
-describe('Lockr.get', function () {
+describe('Lockr.get', function() {
   beforeEach(function() {
     Lockr.set('test', 123);
     Lockr.sadd('array', 2);
     Lockr.sadd('array', 3);
-    Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+    Lockr.set('hash', { "test": 123, "hey": "whatsup" });
     localStorage.nativemethod = 'NativeMethod'
     Lockr.set('valueFalse', false)
     Lockr.set('value0', 0)
   });
 
-  it('returns the value for the given key from the localStorage', function () {
+  it('returns the value for the given key from the localStorage', function() {
     var value = Lockr.get('test');
-
     expect(value).toEqual(123);
   });
 
@@ -44,19 +48,18 @@ describe('Lockr.get', function () {
     expect(value).toBeUndefined();
   });
 
-  it('returns the value for the given key from the localStorage which set by native method', function () {
+  it('returns the value for the given key from the localStorage which set by native method', function() {
     var value = Lockr.get('nativemethod');
-
     expect(value).toEqual('NativeMethod');
   });
 
-  it('returns the value for the given key from the localStorage which equals false', function () {
+  it('returns the value for the given key from the localStorage which equals false', function() {
     var value = Lockr.get('valueFalse');
 
     expect(value).toEqual(false);
   });
 
-  it('returns the value for the given key from the localStorage which equals 0', function () {
+  it('returns the value for the given key from the localStorage which equals 0', function() {
     var value = Lockr.get('value0');
 
     expect(value).toEqual(0);
@@ -75,11 +78,10 @@ describe('Lockr.get', function () {
     expect(keys).toContain('one', 'two', 'three', 'four');
   });
 
-  it('gets all contents of the localStorage', function () {
+  it('gets all contents of the localStorage', function() {
     var contents = Lockr.getAll();
-
     expect(contents.length).toBe(6);
-    expect(contents).toContain({"test": 123, "hey": "whatsup"});
+    expect(contents).toContain({ "test": 123, "hey": "whatsup" });
     expect(contents).toContain(123);
     expect(contents).toContain([2, 3]);
   });
@@ -90,24 +92,24 @@ describe('Lockr.get', function () {
       localStorage.setItem('unescaped', 'a " double-quote');
     });
 
-    it("if it's not a json we get as-is", function () {
+    it("if it's not a json we get as-is", function() {
       var wrongData = Lockr.get("wrong");
       expect(wrongData).toBe(',fluffy,truffly,commas,hell');
     });
 
-    it('works with unescaped characters', function () {
+    it('works with unescaped characters', function() {
       var unescaped = Lockr.get('unescaped');
       expect(unescaped).toBe('a " double-quote');
     });
   });
 });
 
-describe('Lockr.rm', function () {
+describe('Lockr.rm', function() {
   beforeEach(function() {
     Lockr.set('test', 123);
     Lockr.sadd('array', 2);
     Lockr.sadd('array', 3);
-    Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+    Lockr.set('hash', { "test": 123, "hey": "whatsup" });
   });
 
   it('removes succesfully a key-value pair', function() {
@@ -122,15 +124,15 @@ describe('Lockr.rm', function () {
   });
 });
 
-describe('Lockr.flush', function  () {
+describe('Lockr.flush', function() {
   beforeEach(function() {
     Lockr.set('test', 123);
     Lockr.sadd('array', 2);
     Lockr.sadd('array', 3);
-    Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+    Lockr.set('hash', { "test": 123, "hey": "whatsup" });
   });
 
-  it('clears all contents of the localStorage', function () {
+  it('clears all contents of the localStorage', function() {
     var oldContents = Lockr.getAll();
     expect(oldContents.length).not.toBe(0);
 
@@ -147,8 +149,8 @@ describe('Sets', function() {
     Lockr.sadd('test_set', 2);
   });
 
-  describe('Lockr.sadd', function () {
-    it('saves a set under the given key in the localStorage', function () {
+  describe('Lockr.sadd', function() {
+    it('saves a set under the given key in the localStorage', function() {
       Lockr.sadd('a_set', 1);
       Lockr.sadd('a_set', 2);
 
@@ -171,7 +173,7 @@ describe('Sets', function() {
   });
 
   describe('Lock.sismember', function() {
-    it('returns true if the value exists in the given set(key)', function () {
+    it('returns true if the value exists in the given set(key)', function() {
       expect(Lockr.sismember('test_set', 1)).toEqual(true);
       expect(Lockr.sismember('test_set', 34)).toEqual(false);
     });
@@ -185,6 +187,29 @@ describe('Sets', function() {
   });
 });
 
+describe('Lockr::Timestamp', function() {
+  it('返回默认时间2099年', function() {
+    expect(Lockr._getExpir()).toEqual(new Date('2099').getTime());
+  });
+  it('全局过期时间设定', function() {
+    Lockr.expires = 1; //1m == 60s
+    expect(Lockr.expires).toEqual(1);
+  });
+  it('验证过期时间', function(){
+    Lockr.flush();
+    Lockr.set('tom','28', {expires: .1});
+    
+    var s = JSON.parse(localStorage.getItem('tom'))['timestamp'] - new Date().getTime() ;
+    setTimeout(function() {
+      timerCallback();
+    }, s);
+    expect(timerCallback).not.toHaveBeenCalled();
+    jasmine.clock().tick(s);
+    expect(timerCallback).toHaveBeenCalled();
+    
+  });
+});
+
 describe('Lockr::Prefixed', function() {
   it('should set a prefix', function() {
     Lockr.prefix = "imaprefix";
@@ -194,7 +219,7 @@ describe('Lockr::Prefixed', function() {
     expect(Lockr._getPrefixedKey('lalala')).toEqual('imaprefixlalala');
   });
   it('should return a non-prefixed key', function() {
-    expect(Lockr._getPrefixedKey('lalala', {noPrefix: true})).toEqual("lalala");
+    expect(Lockr._getPrefixedKey('lalala', { noPrefix: true })).toEqual("lalala");
   });
   it('should save a key-value pair, prefixed', function() {
     Lockr.set("justlikeyou", true);
@@ -215,13 +240,13 @@ describe('Lockr::Prefixed', function() {
     expect(keys).toContain('one', 'two', 'three', 'four');
   });
 
-  describe('Lockr.flush', function  () {
-    it('clears all contents of the localStorage with prefix', function () {
+  describe('Lockr.flush', function() {
+    it('clears all contents of the localStorage with prefix', function() {
       localStorage.setItem('noprefix', false);
       Lockr.set('test', 123);
       Lockr.sadd('array', 2);
       Lockr.sadd('array', 3);
-      Lockr.set('hash', {"test": 123, "hey": "whatsup"});
+      Lockr.set('hash', { "test": 123, "hey": "whatsup" });
 
       var oldContents = Lockr.getAll();
       var keys = Object.keys(localStorage);

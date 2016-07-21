@@ -13,6 +13,7 @@ module.exports = function(grunt) {
     // Task configuration.
     jshint: {
       options: {
+        asi: false,
         curly: true,
         eqeqeq: true,
         immed: true,
@@ -25,6 +26,7 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         browser: true,
+        indent: 2,
         globals: {
           jQuery: true
         }

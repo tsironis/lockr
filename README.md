@@ -23,6 +23,17 @@ npm i lockr --save
 
 or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/master/lockr.js) and hook it in your HTML.
 
+
+
+*Update*
+```js
+Lockr.set('username','tom',{expires:6});
+
+```
+
+
+
+
 ```html
 <script src="/path/to/lockr.js" type="text/javascript"></script>
 ```
