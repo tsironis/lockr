@@ -34,7 +34,7 @@
   }
 
   Lockr.prefix = "";
-  Lockr.expires = new Date('2099').getTime();
+  Lockr.expires = new Date().getTime()+1e6*6*6*24*365; //the default expires more than 10 years
 
   Lockr._getPrefixedKey = function(key, options) {
     options = options || {};
@@ -50,7 +50,6 @@
     if (options.expires) {
       return new Date().getTime() + options.expires * 60 * 1000;
     } else {
-      //默认2030年到期
       return this.expires;
     };
   }
@@ -58,7 +57,6 @@
   Lockr.set = function(key, value, options) {
     var query_key = this._getPrefixedKey(key, options),
       expires = this._getExpir(options);
-    // alert(expires)
     try {
       localStorage.setItem(query_key, JSON.stringify({"data": value, "timestamp":expires}));
     } catch (e) {

@@ -11,7 +11,7 @@ describe('Lockr.set', function() {
   it('saves a key-value pair in the localStorage', function() {
     Lockr.set('test', 123);
 
-    expect(localStorage.getItem('test')).toContain('{"data":123,');
+    expect(localStorage.getItem('test')).toContain('"data":123,');
   });
 
   it('should save a hash object in the localStorage', function() {
@@ -188,17 +188,21 @@ describe('Sets', function() {
 });
 
 describe('Lockr::Timestamp', function() {
-  it('返回默认时间2099年', function() {
-    expect(Lockr._getExpir()).toEqual(new Date('2099').getTime());
+  it('returns the default after 10 years', function() {
+
+    expect(Lockr._getExpir()).toBeLessThan(new Date().getTime()+1e6*6*6*24*365);
   });
-  it('全局过期时间设定', function() {
-    Lockr.expires = 1; //1m == 60s
-    expect(Lockr.expires).toEqual(1);
+
+  it('should set global expires time', function() {
+    Lockr.expires = 2; //1m == 60s
+
+    expect(Lockr.expires).toEqual(2);
   });
-  it('验证过期时间', function(){
+
+  it('should verify the-expires-time', function(){
     Lockr.flush();
     Lockr.set('tom','28', {expires: .1});
-    
+
     var s = JSON.parse(localStorage.getItem('tom'))['timestamp'] - new Date().getTime() ;
     setTimeout(function() {
       timerCallback();
@@ -206,8 +210,9 @@ describe('Lockr::Timestamp', function() {
     expect(timerCallback).not.toHaveBeenCalled();
     jasmine.clock().tick(s);
     expect(timerCallback).toHaveBeenCalled();
-    
+
   });
+
 });
 
 describe('Lockr::Prefixed', function() {
