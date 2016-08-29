@@ -73,7 +73,7 @@
                 value = null;
             }
     }
-    if(value === null) {
+    if(!value || value === null) {
       return missing;
     } else if (typeof value === 'object' && typeof value.data !== 'undefined') {
       return value.data;
