@@ -1,4 +1,4 @@
-beforeEach(function(){
+beforeEach(function() {
   timerCallback = jasmine.createSpy('timerCallback');
   jasmine.clock().install();
 })
@@ -102,6 +102,30 @@ describe('Lockr.get', function() {
       expect(unescaped).toBe('a " double-quote');
     });
   });
+
+  describe('set the expiration time', function() {
+    beforeEach(function() {
+      Lockr.set('tom', '28', { expires: .1 }); //6s
+
+      var now = new Date();
+      jasmine.clock().mockDate(now);
+    });
+
+    it('works in the expiration time', function() {
+      jasmine.clock().tick(7000); //7s
+      var value = Lockr.get('tom');
+
+      expect(value).toBeUndefined();
+    });
+
+    it('works in the effective time', function(){
+      jasmine.clock().tick(5000); //5s
+      var value = Lockr.get('tom');
+
+      expect(value).toEqual('28');
+    });
+    
+  });
 });
 
 describe('Lockr.rm', function() {
@@ -189,28 +213,14 @@ describe('Sets', function() {
 
 describe('Lockr::Timestamp', function() {
   it('returns the default after 10 years', function() {
-
-    expect(Lockr._getExpir()).toBeLessThan(new Date().getTime()+1e6*6*6*24*365);
+    //new Date(1e6 * 6 * 6 * 24 * 364); less 1 day than 10 year
+    expect(Lockr.getExpirationTime()).toBeGreaterThan(new Date().getTime() + 1e6 * 6 * 6 * 24 * 364);
   });
 
   it('should set global expires time', function() {
-    Lockr.expires = 2; //1m == 60s
+    Lockr.expires = 10; //1m == 60s
 
-    expect(Lockr.expires).toEqual(2);
-  });
-
-  it('should verify the-expires-time', function(){
-    Lockr.flush();
-    Lockr.set('tom','28', {expires: .1});
-
-    var s = JSON.parse(localStorage.getItem('tom'))['timestamp'] - new Date().getTime() ;
-    setTimeout(function() {
-      timerCallback();
-    }, s);
-    expect(timerCallback).not.toHaveBeenCalled();
-    jasmine.clock().tick(s);
-    expect(timerCallback).toHaveBeenCalled();
-
+    expect(Lockr.expires).toEqual(10);
   });
 
 });

@@ -45,7 +45,7 @@
     }
   };
 
-  Lockr._getExpir = function(options) {
+  Lockr.getExpirationTime = function(options) {
     options = options || {};
     if (options.expires) {
       return new Date().getTime() + options.expires * 60 * 1000;
@@ -56,8 +56,8 @@
 
   Lockr.set = function(key, value, options) {
     var query_key = this._getPrefixedKey(key, options),
-      expires = this._getExpir(options);
-    try {
+      expires = this.getExpirationTime(options);
+    try { 
       localStorage.setItem(query_key, JSON.stringify({"data": value, "timestamp":expires}));
     } catch (e) {
       if (console) console.warn("Lockr didn't successfully save the '{" + key + ": " + value + "}' pair, because the localStorage is full.");
@@ -71,11 +71,11 @@
     try {
       value = JSON.parse(localStorage.getItem(query_key));
       if (!value.timestamp) {
-        value.timestamp = this._getExpir(options);
+        value.timestamp = this.getExpirationTime(options);
       };
     } catch (e) {
       if (localStorage[query_key]) {
-        value = { data: localStorage.getItem(query_key), timestamp: this._getExpir(options) };
+        value = { data: localStorage.getItem(query_key), timestamp: this.getExpirationTime(options) };
       } else {
         value = null;
       }
@@ -126,7 +126,6 @@
   };
 
   Lockr.sismember = function(key, value, options) {
-    var query_key = this._getPrefixedKey(key, options);
 
     return Lockr.smembers(key).indexOf(value) > -1;
   };
