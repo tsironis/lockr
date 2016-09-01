@@ -126,7 +126,6 @@
   };
 
   Lockr.sismember = function(key, value, options) {
-
     return Lockr.smembers(key).indexOf(value) > -1;
   };
 
