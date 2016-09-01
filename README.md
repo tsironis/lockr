@@ -1,13 +1,12 @@
-![Lockr logo](http://i.imgur.com/m5kPjkB.png)
-[![Code
+![Lockr logo](http://i.imgur.com/m5kPjkB.png)[![Code
 Climate](https://codeclimate.com/github/tsironis/lockr/badges/gpa.svg)](https://codeclimate.com/github/tsironis/lockr)
-
 
 > A minimal API wrapper for localStorage. Simple as your high-school locker.
 
 Lockr (pronounced /ˈlɒkəʳ/) is an extremely lightweight library (<2kb when minified), designed to facilitate how you interact with localStorage. Saving objects and arrays, numbers or other data types, accessible via a Redis-like API, heavily inspired by [node_redis](https://github.com/mranney/node_redis/).
 
-## How to use lockr
+How to use lockr
+----------------
 
 In order to user lockr, you firstly need to install it in your project.
 
@@ -15,7 +14,7 @@ In order to user lockr, you firstly need to install it in your project.
 bower install lockr
 ```
 
-or you use npm to install 
+or you use npm to install
 
 ```js
 npm i lockr --save
@@ -27,11 +26,12 @@ or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/
 <script src="/path/to/lockr.js" type="text/javascript"></script>
 ```
 
-## API reference
+API reference
+-------------
 
-```Lockr.set``` - arguments: *[ key, value ]* {String, Number, Array or Object}
+`Lockr.set` - arguments: *[ key, value ]* {String, Number, Array or Object}
 
-> Set a key to a particular value or a hash object (```Object``` or ```Array```) under a hash key.
+> Set a key to a particular value or a hash object (`Object` or `Array`) under a hash key. You can set the local-key expires;
 
 *Example*
 
@@ -39,15 +39,17 @@ or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/
 Lockr.set('username', 'Coyote'); // Saved as string
 Lockr.set('user_id', 12345); // Saved as number
 Lockr.set('users', [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]);
+Lockr.set('username', 'Coyote', {expires: 6}); //expires: 6 minutes
 ```
 
 ---
 
-```Lockr.get``` - arguments: *[ key or hash_key, default value ]*
+`Lockr.get` - arguments: *[ key or hash_key, default value ]*
 
 > Returns the saved value for given key, even if the saved value is hash object. If value is null or undefined it returns a default value.
 
 *Example*
+
 ```js
 Lockr.get('username');
 > "Coyote"
@@ -68,9 +70,9 @@ Lockr.get('score', 0):
 
 ---
 
-```Lockr.rm``` - arguments: *[ key ]* {String}
+`Lockr.rm` - arguments: *[ key ]* {String}
 
-> Remove a key from ```localStorage``` entirely.
+> Remove a key from `localStorage` entirely.
 
 *Example*
 
@@ -85,7 +87,7 @@ Lockr.get('username');
 
 ---
 
-```Lockr.sadd``` - arguments *[ key, value ]*{String, Number, Array or Object}
+`Lockr.sadd` - arguments *[ key, value ]*{String, Number, Array or Object}
 
 > Adds a unique value to a particular set under a hash key.
 
@@ -99,7 +101,7 @@ Lockr.sadd("wat", 1); // [1, 2]
 
 ---
 
-```Lockr.smembers``` - arguments *[ key ]*
+`Lockr.smembers` - arguments *[ key ]*
 
 > Returns the values of a particular set under a hash key.
 
@@ -113,7 +115,7 @@ Lockr.smembers("wat"); // [42, 1337]
 
 ---
 
-```Lockr.sismember``` - arguments *[ key, value ]*
+`Lockr.sismember` - arguments *[ key, value ]*
 
 > Returns whether the value exists in a particular set under a hash key.
 
@@ -127,7 +129,7 @@ Lockr.sismember("wat", 2); // false
 
 ---
 
-```Lockr.srem``` - arguments *[ key, value ]*
+`Lockr.srem` - arguments *[ key, value ]*
 
 > Removes a value from a particular set under a hash key.
 
@@ -142,9 +144,9 @@ Lockr.smembers("wat"); // [2]
 
 ---
 
-```Lockr.getAll``` - arguments: *null*
+`Lockr.getAll` - arguments: *null*
 
-> Returns all saved values & objects, in an ```Array```
+> Returns all saved values & objects, in an `Array`
 
 *Example*
 
@@ -152,9 +154,10 @@ Lockr.smembers("wat"); // [2]
 Lockr.getAll();
 > ["Coyote", 12345, [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]]
 ```
+
 ---
 
-```Lockr.flush()``` - arguments: *null*
+`Lockr.flush()` - arguments: *null*
 
 > Empties localStorage().
 
