@@ -119,8 +119,6 @@
   };
 
   Lockr.sismember = function(key, value, options) {
-    var query_key = this._getPrefixedKey(key, options);
-
     return Lockr.smembers(key).indexOf(value) > -1;
   };
 
