@@ -15,7 +15,7 @@ In order to user lockr, you firstly need to install it in your project.
 bower install lockr
 ```
 
-or you use npm to install 
+or you use npm to install
 
 ```js
 npm i lockr --save
@@ -151,6 +151,17 @@ Lockr.smembers("wat"); // [2]
 ```js
 Lockr.getAll();
 > ["Coyote", 12345, [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]]
+```
+
+```Lockr.getAll``` - arguments: *[includeKeys] {Boolean}*
+
+> Returns contents of `localStorage` as an Array of dictionaries that contain key and value of the saved item.
+
+*Example*
+
+```js
+Lockr.getAll(true);
+> [{"username": "Coyote"}, {"user_id": 12345}, {"users": [{name: 'John Doe', age: 18}, {name: 'Jane Doe', age: 19}]}]
 ```
 ---
 

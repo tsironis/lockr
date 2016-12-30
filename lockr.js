@@ -139,8 +139,18 @@
     return keys;
   };
 
-  Lockr.getAll = function () {
+  Lockr.getAll = function (includeKeys) {
     var keys = Lockr.keys();
+
+    if (includeKeys) {
+      return keys.reduce(function (accum, key) {
+        var tempObj = {};
+        tempObj[key] = Lockr.get(key);
+        accum.push(tempObj);
+        return accum;
+      }, []);
+    }
+
     return keys.map(function (key) {
       return Lockr.get(key);
     });
