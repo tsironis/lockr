@@ -1,9 +1,12 @@
 ![Lockr logo](http://i.imgur.com/m5kPjkB.png)
-[![Code
-Climate](https://codeclimate.com/github/tsironis/lockr/badges/gpa.svg)](https://codeclimate.com/github/tsironis/lockr)
-
 
 > A minimal API wrapper for localStorage. Simple as your high-school locker.
+
+[![Build Status](https://travis-ci.org/tsironis/lockr.svg?branch=master)](https://travis-ci.org/tsironis/lockr)
+[![npm version](https://badge.fury.io/js/lockr.svg)](http://badge.fury.io/js/lockr)
+[![CodeClimate](https://codeclimate.com/github/tsironis/lockr/badges/gpa.svg)](https://codeclimate.com/github/tsironis/lockr)
+[![Dependencies](https://david-dm.org/tsironis/lockr.svg?theme=shields.io)](https://david-dm.org/tsironis/lockr)
+[![devDependency Status](https://david-dm.org/tsironis/lockr/dev-status.svg)](https://david-dm.org/tsironis/lockr#info=devDependencies)
 
 Lockr (pronounced /ˈlɒkəʳ/) is an extremely lightweight library (<2kb when minified), designed to facilitate how you interact with localStorage. Saving objects and arrays, numbers or other data types, accessible via a Redis-like API, heavily inspired by [node_redis](https://github.com/mranney/node_redis/).
 
