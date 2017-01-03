@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - 6.9.2
+branches:
+  only:
+    - master
+before_script:
+  - npm install
+script:
+- npm run build

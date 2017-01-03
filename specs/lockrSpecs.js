@@ -84,6 +84,15 @@ describe('Lockr.get', function () {
     expect(contents).toContain([2, 3]);
   });
 
+  it('gets all contents of the localStorage as Array of dictionaries (key/value)', function () {
+    var contents = Lockr.getAll(true);
+
+    expect(contents.length).toBe(6);
+    expect(contents).toContain({"hash": {"test": 123, "hey": "whatsup"}});
+    expect(contents).toContain({"test": 123});
+    expect(contents).toContain({"array": [2, 3]});
+  });
+
   describe('with pre-existing data', function() {
     beforeEach(function() {
       localStorage.setItem('wrong', ',fluffy,truffly,commas,hell');
