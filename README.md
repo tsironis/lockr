@@ -32,6 +32,25 @@ or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/
 
 ## API reference
 
+
+```Lockr.prefix``` - String
+
+> Set a prefix to a string value that is going to be prepended to each key saved by Lockr.
+
+*Example*
+
+```js
+Lockr.prefix = 'lockr';
+Lockr.set('username', 'Coyote'); // Saved as string
+localStorage.getItem('username');
+> null
+localStorage.getItem('lockr_username');
+> {"data":123}
+```
+*Please note that* when prefix is set, ```flush``` method deletes only keys that are prefixed, and ignores the rest.
+
+---
+
 ```Lockr.set``` - arguments: *[ key, value ]* {String, Number, Array or Object}
 
 > Set a key to a particular value or a hash object (```Object``` or ```Array```) under a hash key.
