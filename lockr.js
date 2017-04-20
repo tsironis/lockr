@@ -178,7 +178,9 @@
   };
 
   Lockr.rm =  function (key) {
-    localStorage.removeItem(key);
+    var queryKey = this._getPrefixedKey(key);
+    
+    localStorage.removeItem(queryKey);
   };
 
   Lockr.flush = function () {
