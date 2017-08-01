@@ -73,9 +73,8 @@
                 value = null;
             }
     }
-    if(value === null) {
-      return missing;
-    } else if (typeof value === 'object' && typeof value.data !== 'undefined') {
+    
+    if (typeof value === 'object' && typeof value.data !== 'undefined') {
       return value.data;
     } else {
       return missing;
@@ -111,11 +110,8 @@
     } catch (e) {
       value = null;
     }
-
-    if (value === null)
-      return [];
-    else
-      return (value.data || []);
+    
+    return (value && value.data) ? value.data : [];
   };
 
   Lockr.sismember = function(key, value, options) {
