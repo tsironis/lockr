@@ -74,10 +74,11 @@
             }
     }
     
-    if (typeof value === 'object' && typeof value.data !== 'undefined') {
-      return value.data;
-    } else {
+    if(!value) {
       return missing;
+    }
+    else if (typeof value === 'object' && typeof value.data !== 'undefined') {
+      return value.data;
     }
   };
 
