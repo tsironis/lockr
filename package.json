@@ -1,5 +1,6 @@
 {
   "name": "lockr",
+  "description": "A minimal API wrapper for localStorage",
   "version": "0.8.4",
   "author": {
     "name": "Dimitris Tsironis",
