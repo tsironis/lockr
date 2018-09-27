@@ -40,7 +40,7 @@ or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/
 *Example*
 
 ```js
-Lockr.prefix = 'lockr';
+Lockr.prefix = 'lockr_';
 Lockr.set('username', 'Coyote'); // Saved as string
 localStorage.getItem('username');
 > null
