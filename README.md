@@ -45,7 +45,7 @@ Lockr.set('username', 'Coyote'); // Saved as string
 localStorage.getItem('username');
 > null
 localStorage.getItem('lockr_username');
-> {"data":123}
+> {"data":"Coyote"}
 ```
 *Please note that* when prefix is set, ```flush``` method deletes only keys that are prefixed, and ignores the rest.
 
