@@ -115,7 +115,7 @@
     return (value && value.data) ? value.data : [];
   };
 
-  Lockr.sismember = function(key, value, options) {
+  Lockr.sismember = function(key, value) {
     return Lockr.smembers(key).indexOf(value) > -1;
   };
 
@@ -136,20 +136,20 @@
     return keys;
   };
 
-  Lockr.getAll = function (includeKeys) {
+  Lockr.getAll = function (includeKeys, options) {
     var keys = Lockr.keys();
 
     if (includeKeys) {
       return keys.reduce(function (accum, key) {
         var tempObj = {};
-        tempObj[key] = Lockr.get(key);
+        tempObj[key] = Lockr.get(key, options);
         accum.push(tempObj);
         return accum;
       }, []);
     }
 
     return keys.map(function (key) {
-      return Lockr.get(key);
+      return Lockr.get(key, options);
     });
   };
 
@@ -174,16 +174,16 @@
     }
   };
 
-  Lockr.rm =  function (key) {
-    var queryKey = this._getPrefixedKey(key);
+  Lockr.rm =  function (key, options) {
+    var queryKey = this._getPrefixedKey(key, options);
     
     localStorage.removeItem(queryKey);
   };
 
-  Lockr.flush = function () {
+  Lockr.flush = function (options) {
     if (Lockr.prefix.length) {
       Lockr.keys().forEach(function(key) {
-        localStorage.removeItem(Lockr._getPrefixedKey(key));
+        localStorage.removeItem(Lockr._getPrefixedKey(key, options));
       });
     } else {
       localStorage.clear();
