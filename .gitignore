@@ -1,5 +1,6 @@
-.grunt
+*.log
+.DS_Store
 node_modules
-_SpecRunner.html
-package-lock.json
-lockr.min.js
+dist
+coverage
+.yarn
