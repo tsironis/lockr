@@ -15,20 +15,10 @@ Lockr (pronounced /ˈlɒkəʳ/) is an extremely lightweight library (<2kb when m
 In order to user lockr, you firstly need to install it in your project.
 
 ```js
-bower install lockr
+npm install lockr --save
 ```
 
-or you use npm to install
-
-```js
-npm i lockr --save
-```
-
-or maybe download it manually from [here](https://raw.github.com/tsironis/lockr/master/lockr.js) and hook it in your HTML.
-
-```html
-<script src="/path/to/lockr.js" type="text/javascript"></script>
-```
+or maybe download it manually from [JSDelivr](https://www.jsdelivr.com/package/npm/lockr) and hook it in your HTML.
 
 ## API reference
 
