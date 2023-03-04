@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1677954804076" clover="3.2.0">
+  <project timestamp="1677954804076" name="All files">
+    <metrics statements="132" coveredstatements="124" conditionals="40" coveredconditionals="31" methods="22" coveredmethods="20" elements="194" coveredelements="175" complexity="0" loc="132" ncloc="132" packages="1" files="13" classes="13"/>
+    <file name="flush.ts" path="/Users/dimitristsironis/Code/lockr/src/flush.ts">
+      <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="2" count="5" type="stmt"/>
+      <line num="4" count="5" type="stmt"/>
+      <line num="5" count="15" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="3" type="stmt"/>
+      <line num="7" count="11" type="stmt"/>
+      <line num="10" count="12" type="stmt"/>
+    </file>
+    <file name="get.ts" path="/Users/dimitristsironis/Code/lockr/src/get.ts">
+      <metrics statements="14" coveredstatements="13" conditionals="10" coveredconditionals="8" methods="1" coveredmethods="1"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="3" count="5" type="stmt"/>
+      <line num="8" count="39" type="stmt"/>
+      <line num="11" count="39" type="stmt"/>
+      <line num="12" count="39" type="stmt"/>
+      <line num="13" count="39" type="cond" truecount="2" falsecount="0"/>
+      <line num="14" count="37" type="stmt"/>
+      <line num="17" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="18" count="5" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="24" count="39" type="cond" truecount="2" falsecount="0"/>
+      <line num="25" count="3" type="stmt"/>
+      <line num="26" count="36" type="cond" truecount="3" falsecount="1"/>
+      <line num="27" count="36" type="stmt"/>
+    </file>
+    <file name="getAll.ts" path="/Users/dimitristsironis/Code/lockr/src/getAll.ts">
+      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="2" count="5" type="stmt"/>
+      <line num="4" count="5" type="stmt"/>
+      <line num="5" count="10" type="stmt"/>
+      <line num="7" count="10" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="6" type="stmt"/>
+      <line num="10" count="6" type="stmt"/>
+      <line num="11" count="6" type="stmt"/>
+      <line num="12" count="6" type="stmt"/>
+      <line num="16" count="9" type="stmt"/>
+      <line num="17" count="25" type="stmt"/>
+    </file>
+    <file name="global.d.ts" path="/Users/dimitristsironis/Code/lockr/src/global.d.ts">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+    </file>
+    <file name="index.ts" path="/Users/dimitristsironis/Code/lockr/src/index.ts">
+      <metrics statements="25" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="2" count="5" type="stmt"/>
+      <line num="3" count="5" type="stmt"/>
+      <line num="4" count="5" type="stmt"/>
+      <line num="5" count="5" type="stmt"/>
+      <line num="6" count="5" type="stmt"/>
+      <line num="7" count="5" type="stmt"/>
+      <line num="8" count="5" type="stmt"/>
+      <line num="9" count="5" type="stmt"/>
+      <line num="10" count="5" type="stmt"/>
+      <line num="11" count="5" type="stmt"/>
+      <line num="14" count="5" type="stmt"/>
+      <line num="15" count="5" type="stmt"/>
+      <line num="16" count="5" type="stmt"/>
+      <line num="17" count="5" type="stmt"/>
+      <line num="18" count="5" type="stmt"/>
+      <line num="19" count="5" type="stmt"/>
+      <line num="20" count="5" type="stmt"/>
+      <line num="21" count="5" type="stmt"/>
+      <line num="22" count="5" type="stmt"/>
+      <line num="23" count="5" type="stmt"/>
+      <line num="24" count="7" type="stmt"/>
+      <line num="25" count="5" type="stmt"/>
+      <line num="26" count="7" type="stmt"/>
+      <line num="27" count="5" type="stmt"/>
+    </file>
+    <file name="keys.ts" path="/Users/dimitristsironis/Code/lockr/src/keys.ts">
+      <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="2" count="5" type="stmt"/>
+      <line num="3" count="15" type="stmt"/>
+      <line num="4" count="15" type="stmt"/>
+      <line num="5" count="15" type="stmt"/>
+      <line num="7" count="15" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="7" type="stmt"/>
+      <line num="11" count="8" type="stmt"/>
+      <line num="12" count="35" type="cond" truecount="2" falsecount="0"/>
+      <line num="13" count="25" type="stmt"/>
+      <line num="17" count="8" type="stmt"/>
+    </file>
+    <file name="prefix.ts" path="/Users/dimitristsironis/Code/lockr/src/prefix.ts">
+      <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+      <line num="1" count="6" type="stmt"/>
+      <line num="2" count="6" type="stmt"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="6" count="6" type="stmt"/>
+      <line num="7" count="205" type="cond" truecount="6" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="10" count="204" type="stmt"/>
+      <line num="14" count="6" type="stmt"/>
+      <line num="15" count="30" type="stmt"/>
+      <line num="18" count="6" type="stmt"/>
+      <line num="19" count="15" type="stmt"/>
+      <line num="22" count="6" type="stmt"/>
+    </file>
+    <file name="rm.ts" path="/Users/dimitristsironis/Code/lockr/src/rm.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="3" count="5" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+    </file>
+    <file name="sadd.ts" path="/Users/dimitristsironis/Code/lockr/src/sadd.ts">
+      <metrics statements="15" coveredstatements="12" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="1" count="6" type="stmt"/>
+      <line num="2" count="6" type="stmt"/>
+      <line num="4" count="6" type="stmt"/>
+      <line num="9" count="43" type="stmt"/>
+      <line num="12" count="43" type="stmt"/>
+      <line num="14" count="43" type="cond" truecount="2" falsecount="0"/>
+      <line num="15" count="11" type="stmt"/>
+      <line num="18" count="32" type="stmt"/>
+      <line num="19" count="32" type="stmt"/>
+      <line num="20" count="32" type="stmt"/>
+      <line num="21" count="32" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="25" count="0" type="stmt"/>
+      <line num="33" count="32" type="stmt"/>
+    </file>
+    <file name="set.ts" path="/Users/dimitristsironis/Code/lockr/src/set.ts">
+      <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="5" type="stmt"/>
+      <line num="4" count="5" type="stmt"/>
+      <line num="5" count="59" type="stmt"/>
+      <line num="7" count="59" type="stmt"/>
+      <line num="8" count="59" type="stmt"/>
+      <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="11" count="0" type="stmt"/>
+    </file>
+    <file name="sismember.ts" path="/Users/dimitristsironis/Code/lockr/src/sismember.ts">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="6" type="stmt"/>
+      <line num="3" count="6" type="stmt"/>
+      <line num="4" count="3" type="stmt"/>
+    </file>
+    <file name="smembers.ts" path="/Users/dimitristsironis/Code/lockr/src/smembers.ts">
+      <metrics statements="8" coveredstatements="8" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <line num="1" count="6" type="stmt"/>
+      <line num="2" count="6" type="stmt"/>
+      <line num="3" count="49" type="stmt"/>
+      <line num="6" count="49" type="stmt"/>
+      <line num="7" count="49" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="33" type="stmt"/>
+      <line num="10" count="16" type="stmt"/>
+      <line num="13" count="49" type="cond" truecount="4" falsecount="0"/>
+    </file>
+    <file name="srem.ts" path="/Users/dimitristsironis/Code/lockr/src/srem.ts">
+      <metrics statements="13" coveredstatements="11" conditionals="4" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <line num="1" count="6" type="stmt"/>
+      <line num="2" count="6" type="stmt"/>
+      <line num="4" count="6" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="9" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="19" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

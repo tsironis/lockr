@@ -1,35 +1,18 @@
 {
   "name": "lockr",
-  "description": "A minimal API wrapper for localStorage",
-  "version": "0.8.5",
-  "author": {
-    "name": "Dimitris Tsironis",
-    "email": "tsironis.dimitris@gmail.com"
-  },
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/tsironis/lockr.git"
-  },
   "license": "MIT",
-  "files": [
-    "lockr.js",
-    "lockr.min.js",
-    "LICENSE"
-  ],
-  "main": "lockr.js",
+  "version": "0.9.0-beta.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Dimitris Tsironis",
   "scripts": {
-    "build": "grunt"
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc ./src/index.ts"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.11.0",
-    "grunt-contrib-jasmine": "~1.0.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-clean": "~0.7.0",
-    "grunt-contrib-uglify": "~0.11.1",
-    "grunt": "~0.4.5",
-    "grunt-cli": "~0.1.13"
+    "@changesets/cli": "^2.26.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
   }
 }
